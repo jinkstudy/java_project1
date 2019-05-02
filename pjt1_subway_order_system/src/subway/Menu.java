@@ -1,17 +1,17 @@
 package subway;
 
 public class Menu {
-	private Food[] menu =new Food[6];
-	private Food[] bread = new Food[6];
-	private Food[] sauce = new Food[9];	
-	private Food[] topping = new Food[9];	
-	private String[] orderList; 
+	 Food[] menu =new Food[6];
+	 Food[] bread = new Food[6];
+	 Food[] sauce = new Food[9];	
+	 Food[] topping = new Food[9];	
+	 String[] orderList; 
 
 	//PizzaStore 생성자 실행 시 메뉴 및 가격 초기화.
 	public Menu(){
 
-		String[] menu_list = {"로티세리 치킨","터키 베이컨 아보카도","풀드포크","에그마요","이탈리안 비엠티","비엠티"};
-		int[]  menu_price = {5900,6400,5900,4300,5100,5300};
+		String[] menu_list = {"햄","터키 베이컨 ","로스트치킨","치킨데리야끼","이탈리안 비엠티","비엘티"};
+		int[]  menu_price = {4300,4900,4900,5100,4500,4500};
 		String[] bread_list = {"위트","화이트","허니 이 탈리안","허니 오트"," 파마산 오레가노","플랫브래드"};
 		int[]  bread_price = {0,0,300,300,500,700};
 		String[] sauce_list = {"렌치드레싱","마요네즈","스위트 어니언","허니 머스터드","스위트 칠리","바베큐","이탈리안 드레싱","후추","올리브 오일"};
@@ -29,8 +29,8 @@ public class Menu {
 			bread[i].name = bread_list[i];
 			bread[i].price = bread_price[i];
 			//메뉴 및 가격 확인용
-			System.out.println(menu[i].name+ "      "+ menu[i].price);
-			System.out.println(bread[i].name+ "      "+ bread[i].price);
+			//System.out.println(menu[i].name+ "      "+ menu[i].price);
+			//System.out.println(bread[i].name+ "      "+ bread[i].price);
 		
 		}
 		for (int i = 0; i < sauce_price.length; i++) {
@@ -48,4 +48,44 @@ public class Menu {
 		System.out.println();
 		
 	}
+
+//	public Food[] getMenu() {
+//		return menu;
+//	}
+//
+//	public void setMenu(Food[] menu) {
+//		this.menu = menu;
+//	}
+//
+//	public Food[] getBread() {
+//		return bread;
+//	}
+//
+//	public void setBread(Food[] bread) {
+//		this.bread = bread;
+//	}
+//
+//	public Food[] getSauce() {
+//		return sauce;
+//	}
+//
+//	public void setSauce(Food[] sauce) {
+//		this.sauce = sauce;
+//	}
+//
+//	public Food[] getTopping() {
+//		return topping;
+//	}
+//
+//	public void setTopping(Food[] topping) {
+//		this.topping = topping;
+//	}
+//
+//	public String[] getOrderList() {
+//		return orderList;
+//	}
+//
+//	public void setOrderList(String[] orderList) {
+//		this.orderList = orderList;
+//	}
 }
