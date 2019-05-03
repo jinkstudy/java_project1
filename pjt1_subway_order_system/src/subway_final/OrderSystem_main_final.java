@@ -1,4 +1,4 @@
-package subway;
+package subway_final;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -6,24 +6,22 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
-import subway_final.Order_Frame;
-
 
 class Order_Frame extends JFrame implements ActionListener{
-	//	Food[] menu =new Food[6];
-	//	Food[] bread = new Food[6];
-	//	Food[] sauce = new Food[8];	
-	//	Food[] topping = new Food[8];
 
+	//최종 주문 메뉴 및 주문 가격 변수.
 	ArrayList<String> order_list = new ArrayList<String> ();
 	ArrayList<Integer> price_list = new ArrayList<Integer>();
 
+	//버튼 생성
 	JButton[] rbMenu = new JButton[6];
 	JButton[] rbBread = new JButton[6];
-	JCheckBox[] rbSauce = new JCheckBox[8];
-	JCheckBox[] rbTopping = new JCheckBox[8];
+	
+	
+	
+	//textArea 생성
 	JTextArea ta= new JTextArea(" 주문 메뉴를 확인하세요"+'\n');
-	//Food m = new Food();
+	
 
 	String[] menu_list = {"햄","터키 베이컨 ","로스트치킨","치킨데리야끼","이탈리안 비엠티","비엘티"};
 	int[]  menu_price = {4300,4900,4900,5100,4500,4500};
@@ -40,13 +38,10 @@ class Order_Frame extends JFrame implements ActionListener{
 	//생성자 함수 생성
 	public Order_Frame(){
 		JPanel menu_bread = new JPanel();
-		JPanel sauce_topping = new JPanel();
+		//JPanel sauce_topping = new JPanel();
 		JPanel menu_= new JPanel();
 		JPanel bread_ = new JPanel();
-		JPanel sauce_ = new JPanel();
-		JPanel topping_ = new JPanel();
-		
-		
+
 
 		menu_.setLayout(new GridLayout(1,6));
 		menu_.setSize(100,300);
@@ -56,19 +51,15 @@ class Order_Frame extends JFrame implements ActionListener{
 		menu_bread.add(menu_);
 		menu_bread.add(bread_);
 
-//		sauce_.setLayout(new GridLayout(1,8));
-//		topping_.setLayout(new GridLayout(1,8));
-//		sauce_topping.setLayout(new GridLayout(2,1));
-//		sauce_topping.add(sauce_);
-//		sauce_topping.add(topping_);
-
 
 
 		for (int i = 0; i < rbMenu.length; i++) {
 
 			rbMenu[i]=new JButton(menu_list[i],new ImageIcon("src/imgs/menu/"+i+".jpg"));
 			rbBread[i]=new JButton(bread_list[i],new ImageIcon("src/imgs/bread/"+i+".jpg"));
+			
 			menu_.add(rbMenu[i]);bread_.add(rbBread[i]);
+			
 			rbMenu[i].setVerticalTextPosition(JButton.BOTTOM); //text 위치 수직방향 설정
 			rbMenu[i].setHorizontalTextPosition(JButton.CENTER); //text 위치 수평방향 설정
 			rbBread[i].setVerticalTextPosition(JButton.BOTTOM); //text 위치 수직방향 설정
@@ -76,53 +67,33 @@ class Order_Frame extends JFrame implements ActionListener{
 
 		}
 
-//		for (int i = 0; i < rbSauce.length; i++) {
-//
-//
-//			rbSauce[i]=new JCheckBox(sauce_list[i], new ImageIcon("src/imgs/sauce/"+i+".jpg"));
-//			rbTopping[i]=new JCheckBox(topping_list[i],new ImageIcon("src/imgs/topping/"+i+".png"));
-//			menu_.add(rbSauce[i]);bread_.add(rbTopping[i]);
-//			rbSauce[i].setVerticalTextPosition(JButton.BOTTOM); //text 위치 수직방향 설정
-//			rbSauce[i].setHorizontalTextPosition(JButton.CENTER); //text 위치 수평방향 설정
-//			rbTopping[i].setVerticalTextPosition(JButton.BOTTOM); //text 위치 수직방향 설정
-//			rbTopping[i].setHorizontalTextPosition(JButton.CENTER); //text 위치 수평방향 설정
-//		}
 		//배치
 		setLayout(new GridLayout(2,1));
 		add(menu_bread);
-		add(ta);//add(sauce_topping);
-		//		add(menu_bread, BorderLayout.NORTH); 
-		//		add(sauce_topping, BorderLayout.SOUTH); 
-		//add(bread_,BorderLayout.CENTER);
-		//add(sauce_,BorderLayout.SOUTH);
-		//add(topping_, BorderLayout.SOUTH);
+		add(ta);
+		add(new JScrollPane(ta));
 
 
-
-		setSize(1000,300);
+		setSize(1000,500);
 		setVisible(true);
 
 	}
 
-//	void getOrderList(){
-//
-//
-//
-//	}
+	//이벤트 연결.
 	void eventProd() {
 		for (int i = 0; i < rbMenu.length; i++) {
 			rbMenu[i].addActionListener(this);
 			rbBread[i].addActionListener(this);
 		}
-//		for (int i = 0; i < rbSauce.length; i++) {
-//			rbSauce[i].addActionListener(this);
-//			rbTopping[i].addActionListener(this);
-//		}
+
 	}
 
 
 
 	@Override
+	
+	//버튼이 클릭될 때 마다, order_list및 price_list에 정보가 추가됨.
+	
 	public void actionPerformed(ActionEvent e) {
 		JButton obj = (JButton)e.getSource();
 		for (int i = 0; i < rbMenu.length; i++) {
@@ -139,26 +110,10 @@ class Order_Frame extends JFrame implements ActionListener{
 			}
 		}
 		
-//		JCheckBox obj1 = (JCheckBox)e.getSource();
-//		
-//		for (int i = 0; i < rbSauce.length; i++) {
-//			if(obj1 == rbSauce[i]) {
-//				order_list.add(rbSauce[i].getText());
-//				price_list.add(sauce_price[i]);
-//				//System.out.println((String)order_list.get(i));
-//			}else if(obj1 == rbTopping[i]) {
-//				order_list.add(rbTopping[i].getText());
-//				price_list.add(topping_price[i]);
-//			}
-//			
-//		}
-			
 
-		//System.out.println(order_list);
-		//System.out.println(price_list);
+		ta.setText(" 주문 메뉴를 확인하세요\n\n");
 		
-		//ta = new JTextArea();
-		ta.setText(" 주문 메뉴를 확인하세요\n");
+		//출력 및 최종가격.
 		for (int i = 0; i < order_list.size(); i++) {
 			String result = order_list.get(i)+" ,가격 " +price_list.get(i)+'\n';
 			//result_+= result;
@@ -166,11 +121,12 @@ class Order_Frame extends JFrame implements ActionListener{
 			total+=price_list.get(i);
 		}
 		
-		ta.append("총가격은 " +total);
+		ta.append("총가격은 " +total +"입니다.");
 
 	}
 }
-public class OrderSystem_main {
+
+public class OrderSystem_main_final {
 	public static void main(String[] args) {
 
 		Order_Frame order=new Order_Frame();
