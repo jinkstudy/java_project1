@@ -27,16 +27,18 @@ class Order_Frame extends JFrame implements ActionListener{
 	int[]  menu_price = {4300,4900,4900,5100,4500,4500};
 	String[] bread_list = {"위트","화이트","허니 이탈리안","허니 오트"," 파마산 오레가노","플랫브래드"};
 	int[]  bread_price = {0,0,300,300,500,700};
-	String[] sauce_list = {"렌치드레싱","마요네즈","스위트 어니언","허니 머스터드","스위트 칠리","바베큐","이탈리안 드레싱","올리브 오일"};
-	int[] sauce_price = {0,0,300,400,500,200,0,0};
-	String[] topping_list = {"양상추","토마토","오이","피망","할라피뇨","피클","올리브","아보카도"};
-	int[] topping_price = {0,0,500,400,0,200,300,1000};
+	
+//	String[] sauce_list = {"렌치드레싱","마요네즈","스위트 어니언","허니 머스터드","스위트 칠리","바베큐","이탈리안 드레싱","올리브 오일"};
+//	int[] sauce_price = {0,0,300,400,500,200,0,0};
+//	String[] topping_list = {"양상추","토마토","오이","피망","할라피뇨","피클","올리브","아보카도"};
+//	int[] topping_price = {0,0,500,400,0,200,300,1000};
 	
 	int total = 0;
 	String result_="";
 
 	//생성자 함수 생성
 	public Order_Frame(){
+		
 		JPanel menu_bread = new JPanel();
 		//JPanel sauce_topping = new JPanel();
 		JPanel menu_= new JPanel();
@@ -52,13 +54,15 @@ class Order_Frame extends JFrame implements ActionListener{
 		menu_bread.add(bread_);
 
 
-
+		
 		for (int i = 0; i < rbMenu.length; i++) {
-
+			//객체 생성 
 			rbMenu[i]=new JButton(menu_list[i],new ImageIcon("src/imgs/menu/"+i+".jpg"));
 			rbBread[i]=new JButton(bread_list[i],new ImageIcon("src/imgs/bread/"+i+".jpg"));
 			
-			menu_.add(rbMenu[i]);bread_.add(rbBread[i]);
+			//panel 배치 추가. 
+			menu_.add(rbMenu[i]);
+			bread_.add(rbBread[i]);
 			
 			rbMenu[i].setVerticalTextPosition(JButton.BOTTOM); //text 위치 수직방향 설정
 			rbMenu[i].setHorizontalTextPosition(JButton.CENTER); //text 위치 수평방향 설정
@@ -67,7 +71,7 @@ class Order_Frame extends JFrame implements ActionListener{
 
 		}
 
-		//배치
+		//전체 배치
 		setLayout(new GridLayout(2,1));
 		add(menu_bread);
 		add(ta);
