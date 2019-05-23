@@ -130,11 +130,14 @@ public class StockView   extends JPanel {
 			//오른쪽 -위
 			JPanel p_east_n = new JPanel();
 			p_east_n.setLayout(new GridLayout(2,1));
+			//p_east_n.setBorder(new TitledBorder(""));
 			
 				//오른쪽 - 위- 위
 				JPanel p_east_n_n = new JPanel();
 				p_east_n_n.setLayout(new GridLayout(1,2));
+				p_east_n_n.setBorder(new TitledBorder(""));
 				p_east_n_n.add(rbstOrderSearch);
+				
 				p_east_n_n.add(rbStSearch);
 				
 				//오른쪽 - 위- d아래
@@ -142,6 +145,7 @@ public class StockView   extends JPanel {
 				p_east_n_s.setLayout(new GridLayout(1,3));
 				p_east_n_s.add(new JLabel("조회")); // 조건따라 변경
 				p_east_n_s.add(cbstSearch);	
+				p_east_n_s.setBorder(new TitledBorder(""));
 				//p_east_n_s.
 			
 				
