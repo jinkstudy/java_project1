@@ -1,5 +1,7 @@
 package view;
 
-public class OrderView {
+import javax.swing.JPanel;
+
+public class OrderView   extends JPanel {
 
 }

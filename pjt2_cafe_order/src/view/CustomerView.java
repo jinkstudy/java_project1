@@ -1,5 +1,7 @@
 package view;
 
-public class CustomerView {
+import javax.swing.JPanel;
+
+public class CustomerView  extends JPanel {
 
 }
