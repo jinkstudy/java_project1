@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.AbstractTableModel;
 
@@ -40,6 +42,7 @@ public OrderView() {
 //화면설계 메소드
 public void addLayout() {
 	//멤버변수의 객체 생성
+	
 	tfOrderTel = new JTextField(20);
 	tfMiles = new JTextField(100);
 	tfCupon = new JTextField(100);
