@@ -40,11 +40,21 @@ public class StockView   extends JPanel {
 
 	//배치 레이아웃
 	public void addLayout() {
-		String[] mlist;
+		try{
+			
+		 UIManager.setLookAndFeel("com.birosoft.liquid.LiquidLookAndFeel");
+		// UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+		}catch(Exception e){}
+		
+		String[] mlist = new String[9];
+		for (int i = 0; i < 9; i++) {
+			mlist[i] = String.valueOf(i);
+		}
+		
 		
 		try {
-			db = new StockModel();
-			mlist = db.getMname();
+			//db = new StockModel();
+			//mlist = db.getMname();
 			
 			tfStOrderNo = new JTextField(15);
 			btstOrder = new JButton("주문");
@@ -68,8 +78,9 @@ public class StockView   extends JPanel {
 			JOptionPane.showMessageDialog(null, "화면구성실패" + e.getMessage());
 		}
 		
-		
-	
+		btstOrder.setPreferredSize(new Dimension(20,80)); 
+		btstCancel.setPreferredSize(new Dimension(20,80)); 
+		tfStOrderNo.setPreferredSize(new Dimension(20,60)); 
 		
 		//화면 구성
 			
@@ -101,7 +112,7 @@ public class StockView   extends JPanel {
 			p_west_s.add(btstOrder);
 			p_west_s.add(btstCancel);
 			
-			//p_west_n.setBorder(new TitledBorder(""));
+			p_west_n.setBorder(new TitledBorder(""));
 			p_west_c.setBorder(new TitledBorder(""));
 			p_west_s.setBorder(new TitledBorder(""));
 			
@@ -115,7 +126,7 @@ public class StockView   extends JPanel {
 		//오른쪽 영역
 		JPanel p_east = new JPanel();
 		p_east.setBorder(new TitledBorder("조회"));
-		p_west_s.setLayout(new BorderLayout());	
+		p_east.setLayout(new BorderLayout());	
 			//오른쪽 -위
 			JPanel p_east_n = new JPanel();
 			p_east_n.setLayout(new GridLayout(2,1));
@@ -128,7 +139,7 @@ public class StockView   extends JPanel {
 				
 				//오른쪽 - 위- d아래
 				JPanel p_east_n_s = new JPanel();
-				//p_east_n_s.setLayout(new GridLayout(1,3));
+				p_east_n_s.setLayout(new GridLayout(1,3));
 				p_east_n_s.add(new JLabel("조회")); // 조건따라 변경
 				p_east_n_s.add(cbstSearch);	
 				//p_east_n_s.
