@@ -4,7 +4,7 @@ public class BanaCafe {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		System.out.println("올라가라");
 	}
 
 }
