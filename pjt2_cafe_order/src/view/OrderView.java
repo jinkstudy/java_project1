@@ -29,8 +29,8 @@ public class OrderView extends JPanel {
 	JLabel labelMil, labelCupon, labelTotal, labelTotalWrite;
 	JComboBox MorT;
 
-	JTable tableOrder;     //view 역할
-	OrderTableModel tbModelOrder;   //model 역할
+	//JTable tableOrder;     //view 역할
+	//OrderTableModel tbModelOrder;   //model 역할
 
 
 
@@ -51,50 +51,50 @@ public class OrderView extends JPanel {
 
 
 	private void connectDB() {  //DB연결
-		try {
-			ord = new OrderModel();
-		}catch(Exception ex) {
-			JOptionPane.showMessageDialog(null, "드라이버오류:"+ex.getMessage());
-		}
+//		try {
+//			ord = new OrderModel();
+//		}catch(Exception ex) {
+//			JOptionPane.showMessageDialog(null, "드라이버오류:"+ex.getMessage());
+//		}
 	}
 
 	public  void eventProc() {
-
-		//	insert()//주문이벤트
-		//	proctadd()//수량추가이벤트
-		//	result()//결제버튼이벤트
-		//	cancel()//취소버튼이벤트
-
-		//	search() // 주문내역 조회
-		//	select() // 회원 전화번호로 정보 가져오기 
-		//	update() //회원 전화번호 얻어와서 데이터 수정
-
-
-		//버튼이벤트
-		ButtonEventHandler hdlr = new ButtonEventHandler();
-
-		bTel.addActionListener(hdlr);
-		bPlatW.addActionListener(hdlr);
-		bCarMa.addActionListener(hdlr);
-		bCarpu.addActionListener(hdlr);
-		bIceCarpu.addActionListener(hdlr);
-		bAmerica.addActionListener(hdlr);
-		bIceAmerica.addActionListener(hdlr);
-		bChoco.addActionListener(hdlr);
-		bGreenTea.addActionListener(hdlr);
-		bSand.addActionListener(hdlr);
-		bOrd.addActionListener(hdlr);
-		bCan.addActionListener(hdlr);
-		bUsage.addActionListener(hdlr);
-		bApply.addActionListener(hdlr);
-		bPay.addActionListener(hdlr);
-
-		MorT.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {     //콤보박스 m or t 를 택스트area ta에 옮기기 위해
-			//	ta.setEditable(MorT.isSelected());
-			}
-
-		});
+//
+//		//	insert()//주문이벤트
+//		//	proctadd()//수량추가이벤트
+//		//	result()//결제버튼이벤트
+//		//	cancel()//취소버튼이벤트
+//
+//		//	search() // 주문내역 조회
+//		//	select() // 회원 전화번호로 정보 가져오기 
+//		//	update() //회원 전화번호 얻어와서 데이터 수정
+//
+//
+//		//버튼이벤트
+//		ButtonEventHandler hdlr = new ButtonEventHandler();
+//
+//		bTel.addActionListener(hdlr);
+//		bPlatW.addActionListener(hdlr);
+//		bCarMa.addActionListener(hdlr);
+//		bCarpu.addActionListener(hdlr);
+//		bIceCarpu.addActionListener(hdlr);
+//		bAmerica.addActionListener(hdlr);
+//		bIceAmerica.addActionListener(hdlr);
+//		bChoco.addActionListener(hdlr);
+//		bGreenTea.addActionListener(hdlr);
+//		bSand.addActionListener(hdlr);
+//		bOrd.addActionListener(hdlr);
+//		bCan.addActionListener(hdlr);
+//		bUsage.addActionListener(hdlr);
+//		bApply.addActionListener(hdlr);
+//		bPay.addActionListener(hdlr);
+//
+//		MorT.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {     //콤보박스 m or t 를 택스트area ta에 옮기기 위해
+//			//	ta.setEditable(MorT.isSelected());
+//			}
+//
+//		});
 	}
 
 
@@ -103,83 +103,83 @@ public class OrderView extends JPanel {
 
 
 
-	class ButtonEventHandler implements ActionListener{
-		public void actionPerformed(ActionEvent ev) {
-			Object o = ev.getSource();
-			if(o==tfOrderTel || o==bTel) {
-				//			telSearch();       //전화번호조회이벤트
-				custMiles();//마일리지관리
-				custCoupons();
-
-			}else if(o==ta) {		//'주문내역 확인' 출력되게
-				Orderhwak();
-			}
-
-		}
-	}
-
-
-	public void custMiles() {
-		Order or = new Order();
-		or.setOrderTel(tfOrderTel.getText());
-		or.setOrderTel(bTel.getText());
-		try {
-			ord.insertOrder1(or);
-			clearTextField();
-		}catch(Exception ex) {
-			System.out.println("입력 오류:"+ex.getMessage());
-		}
-	}
-
-	public void custCoupons() {
-		Order or = new Order();
-		or.setOrderTel(tfOrderTel.getText());
-		or.setOrderTel(bTel.getText());
-		try {
-			ord.insertOrder2(or);
-			clearTextField();
-		}catch(Exception ex) {
-			System.out.println("입력 오류:"+ex.getMessage());
-		}
-	}
-
-	public void Orderhwak() {
-		Order or = new Order();
-		or.setPlatW(bPlatW.getText());
-		or.setCarMa(bCarMa.getText());
-		or.setCarpu(bCarpu.getText());
-		or.setIceCarpu(bIceCarpu.getText());
-		or.setAmerica(bAmerica.getText());
-		or.setIceAmerica(bIceAmerica.getText());
-		or.setChoco(bChoco.getText());
-		or.setGreenTea(bGreenTea.getText());
-		or.setSand(bSand.getText());
-		String count = (String)MorT.getSelectedItem(ta.getText()); //mort ta에 옮기기 위해
-		try {
-			ord.orderHwakin(or, count);
-			JOptionPane.showMessageDialog(null, "주문");
-			clearTextField();
-		} catch(Exception ex) {
-			System.out.println("입력오류:"+ex.getMessage());
-		}
-	}
-	private void clearTextField() {
-		tfOrderTel.setText(null);
-		bPlatW.setText(null);
-		bCarMa.setText(null);
-		bCarpu.setText(null);
-		bIceCarpu.setText(null);
-		bAmerica.setText(null);
-		bIceAmerica.setText(null);
-		bChoco.setText(null);
-		bGreenTea.setText(null);
-		bSand.setText(null);
-		bPlatW.setText(null);
-		bPlatW.setText(null);
-		ta.setText("1");
+//	class ButtonEventHandler implements ActionListener{
+//		public void actionPerformed(ActionEvent ev) {
+//			Object o = ev.getSource();
+//			if(o==tfOrderTel || o==bTel) {
+//				//			telSearch();       //전화번호조회이벤트
+//				custMiles();//마일리지관리
+//				custCoupons();
+//
+//			}else if(o==ta) {		//'주문내역 확인' 출력되게
+//				Orderhwak();
+//			}
+//
+//		}
+//	}
 
 
-	}
+//	public void custMiles() {
+//		Order or = new Order();
+//		or.setOrderTel(tfOrderTel.getText());
+//		or.setOrderTel(bTel.getText());
+//		try {
+//			ord.insertOrder1(or);
+//			clearTextField();
+//		}catch(Exception ex) {
+//			System.out.println("입력 오류:"+ex.getMessage());
+//		}
+//	}
+//
+//	public void custCoupons() {
+//		Order or = new Order();
+//		or.setOrderTel(tfOrderTel.getText());
+//		or.setOrderTel(bTel.getText());
+//		try {
+//			ord.insertOrder2(or);
+//			clearTextField();
+//		}catch(Exception ex) {
+//			System.out.println("입력 오류:"+ex.getMessage());
+//		}
+//	}
+
+//	public void Orderhwak() {
+//		Order or = new Order();
+//		or.setPlatW(bPlatW.getText());
+//		or.setCarMa(bCarMa.getText());
+//		or.setCarpu(bCarpu.getText());
+//		or.setIceCarpu(bIceCarpu.getText());
+//		or.setAmerica(bAmerica.getText());
+//		or.setIceAmerica(bIceAmerica.getText());
+//		or.setChoco(bChoco.getText());
+//		or.setGreenTea(bGreenTea.getText());
+//		or.setSand(bSand.getText());
+//		String count = (String)MorT.getSelectedItem(ta.getText()); //mort ta에 옮기기 위해
+//		try {
+//			ord.orderHwakin(or, count);
+//			JOptionPane.showMessageDialog(null, "주문");
+//			clearTextField();
+//		} catch(Exception ex) {
+//			System.out.println("입력오류:"+ex.getMessage());
+//		}
+//	}
+//	private void clearTextField() {
+//		tfOrderTel.setText(null);
+//		bPlatW.setText(null);
+//		bCarMa.setText(null);
+//		bCarpu.setText(null);
+//		bIceCarpu.setText(null);
+//		bAmerica.setText(null);
+//		bIceAmerica.setText(null);
+//		bChoco.setText(null);
+//		bGreenTea.setText(null);
+//		bSand.setText(null);
+//		bPlatW.setText(null);
+//		bPlatW.setText(null);
+//		ta.setText("1");
+//
+//
+//	}
 	//화면설계 메소드
 	public void addLayout() {
 		//멤버변수의 객체 생성
@@ -225,8 +225,8 @@ public class OrderView extends JPanel {
 		labelTotal = new JLabel("총금액");
 		labelTotalWrite = new JLabel();
 
-		tbModelOrder = new OrderTableModel();
-		tableOrder = new JTable(tbModelOrder);
+		//tbModelOrder = new OrderTableModel();
+		//tableOrder = new JTable(tbModelOrder);
 
 		//*************************************
 		// 화면 구성
@@ -334,29 +334,29 @@ public class OrderView extends JPanel {
 		add(order_east);
 	}
 	
-	public class OrderTableModel extends AbstractTableModel { 
-
-	
-
-	@Override
-	public int getRowCount() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getColumnCount() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Object getValueAt(int rowIndex, int columnIndex) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	}
+//	public class OrderTableModel extends AbstractTableModel { 
+//
+//	
+//
+//	@Override
+//	public int getRowCount() {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
+//
+//	@Override
+//	public int getColumnCount() {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
+//
+//	@Override
+//	public Object getValueAt(int rowIndex, int columnIndex) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	}
 
 }
 

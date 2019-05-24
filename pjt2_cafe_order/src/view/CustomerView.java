@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.TitledBorder;
 
 import model.CustomerDao;
@@ -47,6 +49,12 @@ public class CustomerView  extends JPanel {
 
 	
 	public void addLayout(){
+		try {
+			UIManager.setLookAndFeel("com.birosoft.liquid.LiquidLookAndFeel");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 		JPanel p_west = new JPanel();	
 		JPanel p_east = new JPanel();
 

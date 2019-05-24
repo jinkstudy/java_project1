@@ -33,18 +33,18 @@ public class CustomerModel implements CustomerDao {
 		ps.setString(1,tel);
 
 		//3.sql2
-		String sql2 = " SELECT o.otime as otime, m.menuname || '*' || o.ocount AS menuname,o.ototalprice as ototalprice " +
-				" FROM customer c, order_cus o, menu m " +
-				" WHERE c.ctel=o.ctel " +
-				" AND o.menuno = m.menuno " +
-				" AND c.ctel=?";
-		//4. 전송객체
-		PreparedStatement ps2= con.prepareStatement(sql2);
-		ps2.setString(1,tel);
+//		String sql2 = " SELECT o.otime as otime, m.menuname || '*' || o.ocount AS menuname,o.ototalprice as ototalprice " +
+//				" FROM customer c, order_cus o, menu m " +
+//				" WHERE c.ctel=o.ctel " +
+//				" AND o.menuno = m.menuno " +
+//				" AND c.ctel=?";
+//		//4. 전송객체
+//		PreparedStatement ps2= con.prepareStatement(sql2);
+//		ps2.setString(1,tel);
 
 		//5.전송
 		rs=ps.executeQuery();
-		rs2=ps2.executeQuery();
+		//rs2=ps2.executeQuery();
 
 		if(rs.next())
 
@@ -52,17 +52,17 @@ public class CustomerModel implements CustomerDao {
 			dao.setCustmile(rs.getInt("cmile"));
 		}
 		
-		if(rs2.next())
-
-		{
-			dao.setCusDay(rs.getString("otime") +"\t"+ rs.getString("menuname") +"개\t"+ rs.getString("ototalprice") +"원\n");
-			
-		}
+//		if(rs2.next())
+//
+//		{
+//			dao.setCusDay(rs.getString("otime") +"\t"+ rs.getString("menuname") +"개\t"+ rs.getString("ototalprice") +"원\n");
+//			
+//		}
 
 		rs.close();
-		rs2.close();
+		//rs2.close();
 		ps.close();
-		ps2.close();
+		//ps2.close();
 		con.close();
 		return dao;
 	}
