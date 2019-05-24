@@ -1,0 +1,42 @@
+package model.dao;
+
+import java.sql.*;
+import java.util.ArrayList;
+
+public class StockModel {
+	String driver = "oracle.jdbc.driver.OracleDriver";
+	String url ="jdbc:oracle:thin:@192.168.0.46:1521:orcl";
+	String user = "jink";
+	String pass = "1234";
+
+	public StockModel() throws Exception {
+		Class.forName(driver);
+	}
+
+
+
+	public ArrayList getMname() throws Exception {
+		ArrayList mname = new ArrayList() ;
+
+		Connection	con = null;
+		PreparedStatement st= null;
+		ResultSet rs =null;
+
+		// 2. 연결객체
+		con = DriverManager.getConnection(url, user ,pass);
+		//3. sql
+		String sql = "SELECT  menuname FROM menu order by menuno";
+		//4.전송객체
+		st = con.prepareStatement(sql);
+		//5. 전송
+		rs = st.executeQuery();
+
+		// 6. 결과처리
+		while(rs.next()) {
+			mname.add(rs.getString("menuname"));
+		} 
+
+		return mname;
+	}
+
+}

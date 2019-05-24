@@ -1,0 +1,93 @@
+package model.dao;
+
+import java.sql.*;
+import java.util.ArrayList;
+
+import model.StockDao;
+
+
+public class StockModel implements StockDao {
+	String driver = "oracle.jdbc.driver.OracleDriver";
+	String url ="jdbc:oracle:thin:@192.168.0.117:1521:orcl";
+	String user = "jink";
+	String pass = "1234";
+
+	public StockModel() throws Exception {
+		Class.forName(driver);
+	}
+
+
+
+	public String[] getMname() throws Exception {
+		String[] mname=new String[9] ;
+
+		Connection	con = null;
+		PreparedStatement st= null;
+		ResultSet rs =null;
+
+		// 2. 연결객체
+		con = DriverManager.getConnection(url, user ,pass);
+		//3. sql
+		String sql = "SELECT  menuname FROM menu order by menuno";
+		//4.전송객체
+		st = con.prepareStatement(sql);
+		//5. 전송
+		rs = st.executeQuery();
+
+		// 6. 결과처리
+		for (int i = 0; rs.next(); i++) {
+			mname[i] = rs.getString("menuname");
+			//System.out.println(mname[i]);
+		}
+		
+		//7. 닫기
+		rs.close();
+		st.close();
+		con.close();
+		
+
+		return mname;
+	}
+
+
+
+	@Override
+	public int[] getStOrderCnt() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public void insertSt() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void updateSt() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void deleteSt() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public ArrayList getSearchList() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
+}

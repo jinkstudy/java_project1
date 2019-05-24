@@ -1,0 +1,14 @@
+package model;
+
+import java.util.ArrayList;
+
+public interface StockDao {
+	public String[] getMname() throws Exception;
+	public int[] getStOrderCnt() throws Exception;
+	public void insertSt() throws Exception;
+	public void updateSt() throws Exception;
+	public void deleteSt() throws Exception;
+	public ArrayList getSearchList() throws Exception;
+	
+
+}

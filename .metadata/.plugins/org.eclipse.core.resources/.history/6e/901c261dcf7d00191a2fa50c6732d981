@@ -1,0 +1,6 @@
+package model;
+
+public interface StockDao {
+	public String[] getMname() throws Exception;
+
+}
