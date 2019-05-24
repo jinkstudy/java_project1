@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -18,14 +19,16 @@ import javax.swing.table.AbstractTableModel;
 public class OrderView   extends JPanel {
 //member field
 JTextField tfOrderTel, tfMiles, tfCupon, tfTotal;
-JButton bTel, bPlatW, bCarMa, bCarpu, bIceCarpu, bAmerica, bIceAmerica, bChoco,bGreenTea, bSand, bOrd, bCan, bPay;
+JButton bTel, bPlatW, bCarMa, bCarpu, bIceCarpu, bAmerica, bIceAmerica, bChoco,bGreenTea, bSand, bOrd, bCan, bUsage, bApply, bPay;
 JTextArea ta;
-JLabel labelMil, labelCupon, labelUsage, labelApply;
-
+JLabel labelMil, labelCupon, labelTotal, labelTotalWrite;
 JTable tableOrder;     //view 역할
 OrderTableModel OrderTM;   //화면에 테이블 붙이는 클래스
 
 JComboBox MorT;
+private Component order_east_s_c_1;
+private Component order_east_s_c_2;
+private Component order_east_s_c_3;
 
 
 //********
@@ -42,14 +45,16 @@ public OrderView() {
 //화면설계 메소드
 public void addLayout() {
 	//멤버변수의 객체 생성
-	
-	tfOrderTel = new JTextField(20);
+	try {
+		UIManager.setLookAndFeel("com.birosoft.liquid.LiquidLookAndFeel");
+	} catch (Exception e) {	} 
+	tfOrderTel = new JTextField("전화번호를 입력하시오");
 	tfMiles = new JTextField(100);
 	tfCupon = new JTextField(100);
 	tfTotal = new JTextField(100);
 	
 	
-	bTel = new JButton("선택");
+	bTel = new JButton("입력");
 	bPlatW = new JButton("플랫화이트");
 	bCarMa = new JButton("카라멜라테 마키아토");
 	bCarpu = new JButton("카푸치노");
@@ -63,6 +68,8 @@ public void addLayout() {
 
 	bOrd = new JButton("주문");
 	bCan = new JButton("취소");
+	bUsage = new JButton("사용");
+	bApply = new JButton("적용");
 	bPay = new JButton("결제");
 	
 	String []k = {"매장", "테이크아웃"};
@@ -72,9 +79,8 @@ public void addLayout() {
 	
 	labelMil = new JLabel("마일리지");
 	labelCupon = new JLabel("쿠폰번호");
-	labelUsage = new JLabel("사용");
-	labelApply = new JLabel("적용");
-	
+	labelTotal = new JLabel("총금액");
+	labelTotalWrite = new JLabel();
 	
 	OrderTM = new OrderTableModel();
 	tableOrder = new JTable(OrderTM);
@@ -129,34 +135,54 @@ public void addLayout() {
 	
 	//오른쪽  위 
 	
-	JPanel order_east_n = new JPanel();
-	order_east_n.setBorder(new TitledBorder("주문 내역 확인"));
-	order_east_n.add(ta); 
-	order_east.add(order_east_n, BorderLayout.NORTH);
+	JPanel order_east_c = new JPanel();
+	order_east_c.setBorder(new TitledBorder("주문 내역 확인"));
+	order_east_c.add(ta); 
+	order_east.add(order_east_c, BorderLayout.CENTER);
 	
 	//오른쪽 밑
-	JPanel order_east_c = new JPanel();
-	order_east_c.setBorder(new TitledBorder("결   제"));
-	order_east_c.setLayout(new BorderLayout());
+	JPanel order_east_s = new JPanel();
+	order_east_s.setBorder(new TitledBorder("결   제"));
+	order_east_s.setLayout(new BorderLayout());
 	
-	
-	JPanel order_east_c_1 = new JPanel();
-	order_east_c_1.setLayout(new GridLayout(2,3));
-	order_east_c_1.add(labelMil);
-	order_east_c_1.add(tfMiles);
-	order_east_c_1.add(labelUsage);
-	order_east_c_1.add(labelCupon);
-	order_east_c_1.add(tfCupon);
-	order_east_c_1.add(labelApply);
-	order_east_c.add(order_east_c_1,BorderLayout.CENTER);
-	
-	JPanel order_east_c_2 = new JPanel();
+	//오른쪽 밑-센터
+	JPanel order_east_s_c = new JPanel();
+	order_east_s_c.setLayout(new GridLayout(3,1));
 
-	order_east_c_2.add(tfTotal);
-	order_east_c_2.add(bPay);
-	order_east_c.add(order_east_c_2,BorderLayout.SOUTH);
 	
-	order_east.add(order_east_c, BorderLayout.CENTER);
+	
+	JPanel order_east_s_c_1 = new JPanel();
+	order_east_s_c_1.setLayout(new GridLayout(1,3));
+	order_east_s_c_1.add(labelMil);
+	order_east_s_c_1.add(tfMiles);
+	order_east_s_c_1.add(bUsage);
+
+
+	JPanel order_east_s_c_2 = new JPanel();
+	order_east_s_c_2.setLayout(new GridLayout(1,3));
+	order_east_s_c_2.add(labelCupon);
+	order_east_s_c_2.add(tfCupon);
+	order_east_s_c_2.add(bApply);
+
+	JPanel order_east_s_c_3 = new JPanel();
+	order_east_s_c_3.setLayout(new GridLayout(1,2));
+	order_east_s_c_3.add(labelTotal);
+	order_east_s_c_3.add(labelTotalWrite);
+	
+	order_east_s_c_3.setBorder(new TitledBorder(""));
+	order_east_s_c.add(order_east_s_c_1);
+	order_east_s_c.add(order_east_s_c_2);
+	order_east_s_c.add(order_east_s_c_3);
+	
+	order_east_s.add(order_east_s_c, BorderLayout.CENTER);
+	
+	JPanel order_east_s_s = new JPanel();
+	order_east_s_s.setLayout(new BorderLayout());
+	order_east_s_s.add(bPay, BorderLayout.EAST);
+	
+	order_east_s.add(order_east_s_s, BorderLayout.SOUTH);
+	
+	order_east.add(order_east_s, BorderLayout.SOUTH);
 //전체영역에 붙이기
 //전체 c(1,2)로 나눔
 	
