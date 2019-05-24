@@ -35,7 +35,7 @@ public class OrderModel implements OrderDao{
 				// 4. sql 전송객체 (PreparedStatement)
 				ps = con.prepareStatement(sql);
 				
-				ps.setString(1, or.getMiles());
+				ps.setInt(1, or.getMiles());
 				
 				//5.sql 전송
 				ps.executeQuery();
@@ -47,6 +47,7 @@ public class OrderModel implements OrderDao{
 	}
 		
 		public void insertOrder2(Order or) throws Exception {
+	
 			Connection con = null;
 			PreparedStatement ps = null;
 			
@@ -60,10 +61,10 @@ public class OrderModel implements OrderDao{
 				// 4. sql 전송객체 (PreparedStatement)
 				ps = con.prepareStatement(sql);
 				
-				ps.setString(1, or.getMiles());
+				ps.setInt(1, or.getCdiscount());
 				
 				//5.sql 전송
-				ps.executeQuery();
+			 ps.executeQuery();
 			}finally {
 				//. 닫기
 				ps.close();
@@ -72,7 +73,31 @@ public class OrderModel implements OrderDao{
 	}
 		
 		public void orderHwakin(Order or, int count) throws Exception {
+		
 			Connection con = null;
 			PreparedStatement ps = null;
-		}
+			try {
+				//2. Connection 연결객체 얻어오기
+				con = DriverManager.getConnection(url,user,pass);
+				
+				//3. sql 문장 만들기
+				String sql = "UPDATE menu SET MenuNO=?, MenuName=?, MPrice=?,Mcount=?";
+			
+				// 4. sql 전송객체 (PreparedStatement)
+				ps = con.prepareStatement(sql);
+				
+				ps.setInt(1, or.getMenuNo());
+				ps.setString(2, or.getMenuName());
+				ps.setInt(3, or.getMPrice());
+				ps.setInt(4,or.getMcount());
+				
+				//5.sql 전송
+				ps.executeUpdate();
+			}finally {
+				//. 닫기
+				ps.close();
+				con.close();
+				
+			}
+	}
 }
