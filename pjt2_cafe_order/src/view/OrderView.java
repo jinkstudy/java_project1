@@ -15,8 +15,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.AbstractTableModel;
 
 import model.dao.OrderModel;
+import model.vo.Order;
 
 
 public class OrderView extends JPanel {
@@ -28,7 +30,7 @@ public class OrderView extends JPanel {
 	JComboBox MorT;
 
 	JTable tableOrder;     //view 역할
-	OrderModel tbModelOrder;   //model 역할
+	OrderTableModel tbModelOrder;   //model 역할
 
 
 
@@ -223,7 +225,7 @@ public class OrderView extends JPanel {
 		labelTotal = new JLabel("총금액");
 		labelTotalWrite = new JLabel();
 
-		tbModelOrder = new OrderModel();
+		tbModelOrder = new OrderTableModel();
 		tableOrder = new JTable(tbModelOrder);
 
 		//*************************************
@@ -331,8 +333,30 @@ public class OrderView extends JPanel {
 		add(order_west);
 		add(order_east);
 	}
+	
+	public class OrderTableModel extends AbstractTableModel { 
 
+	
 
+	@Override
+	public int getRowCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getColumnCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Object getValueAt(int rowIndex, int columnIndex) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	}
 
 }
 
