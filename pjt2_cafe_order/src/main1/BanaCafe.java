@@ -22,7 +22,7 @@ public class BanaCafe  extends JFrame {
 
 		//각각의 화면을 관리하는 클래스 객체 생성
 		order = new OrderView();
-		//customer = new CustomerView();
+		customer = new CustomerView();
 		stock = new StockView();
 		try {
 			// 1. 자바 내장 룩앤필
@@ -44,7 +44,7 @@ public class BanaCafe  extends JFrame {
 		}
 		JTabbedPane  pane = new JTabbedPane();
 		pane.addTab("주문화면", order );
-		//pane.addTab("고객정보", customer);
+		pane.addTab("고객정보", customer);
 		pane.addTab("재고관리", stock );
 		//pane.addTab("통계", rent );
 
