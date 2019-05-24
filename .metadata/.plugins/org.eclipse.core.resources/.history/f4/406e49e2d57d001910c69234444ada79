@@ -1,0 +1,6 @@
+package model;
+
+public interface CustomerDao {
+	public Customer telSearch(String tel) throws Exception;
+
+}

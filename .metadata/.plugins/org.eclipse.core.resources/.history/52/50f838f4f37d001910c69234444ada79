@@ -1,0 +1,23 @@
+package model.vo;
+
+public class Customer {
+	String custTel;
+	int custmile;
+
+	public int getCustmile() {
+		return custmile;
+	}
+
+	public void setCustmile(int custmile) {
+		this.custmile = custmile;
+	}
+
+	public String getCustTel() {
+		return custTel;
+	}
+
+	public void setCustTel(String custTel) {
+		this.custTel = custTel;
+	}
+}
+
