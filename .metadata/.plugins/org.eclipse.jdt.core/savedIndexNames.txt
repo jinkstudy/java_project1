@@ -6,7 +6,6 @@ INDEX VERSION 1.131+D:\mywork\java\git\git_java_project\.metadata\.plugins\org.e
 3259128581.index
 2517282340.index
 2395552571.index
-1588566994.index
 2774844832.index
 1692395065.index
 1784213029.index
