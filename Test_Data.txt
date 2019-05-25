@@ -1,0 +1,149 @@
+SELECT * FROM Order_cus;
+SELECT * FROM Customer;
+SELECT * FROM Menu;
+SELECT * FROM Stock;
+SELECT * FROM Employee;
+SELECT * FROM Coupon;
+
+/*
+함정
+DROP TABLE Order_cus;
+DROP TABLE Customer;
+DROP TABLE Menu;
+DROP TABLE Stock;
+DROP TABLE Employee;
+DROP TABLE Coupon;
+*/
+
+
+
+/* 고객주문테이블 */
+CREATE TABLE Order_cus (
+	Ono Number(5) NOT NULL, /* 주문번호 */
+	Oorderno varchar2(20), /* 주문요청번호 */
+	Otime varchar2(20), /* 주문일시 */
+	Otype varchar2(10), /* 주문형태 */
+	Ctel VARCHAR2(13), /* 고객전화번호 */
+	MenuNo number(5), /* 메뉴번호 */
+	Ocount number(2), /* 주문수량 */
+	Cno varchar2(20), /* 쿠폰번호 */
+	OtotalPrice number(8) NOT NULL, /* 결제금액 */
+    CONSTRAINT pk_Order_cus_Ono PRIMARY  KEY (Ono));
+
+/* 고객테이블 */
+CREATE TABLE Customer (
+	Ctel VARCHAR2(13) NOT NULL, /* 고객전화번호 */
+	Cmile number(5), /* 마일리지 */
+    CONSTRAINT pk_Customer_Ctel PRIMARY  KEY (Ctel)
+);
+
+
+
+/* 메뉴테이블 */
+CREATE TABLE Menu (
+	MenuNo number(5) NOT NULL, /* 메뉴번호 */
+	MenuName varchar2(20), /* 메뉴명 */
+	MPrice number(8), /* 가격 */
+	Mcount number(8), /* 재고수량 */
+    CONSTRAINT pk_menu_MenuNo PRIMARY  KEY (MenuNo)
+);
+
+/* 입고테이블 */
+CREATE TABLE Stock (
+	SNo number(5) NOT NULL, /* 입고번호 */
+	SorderNo varchar2(20), /* 입고주문번호 */
+	Stime varchar2(20), /* 요청일시 */
+	MenuNo number(5), /* 메뉴번호 */
+	Scount number(8), /* 수량 */
+	Eno number(5), /* 직원번호 */
+    CONSTRAINT pk_Stock_SNo PRIMARY  KEY (SNo)   
+);
+
+/* 직원테이블 */
+CREATE TABLE Employee (
+	Eno number(5) NOT NULL, /* 직원번호 */
+	Ename VARCHAR2(10), /* 직원이름 */
+	Eschedule VARCHAR2(10), /* 근무요일 */
+    CONSTRAINT pk_Employee_Eno PRIMARY  KEY (Eno)  
+);
+
+/* 쿠폰테이블 */
+CREATE TABLE Coupon (
+	Cno varchar2(20) NOT NULL, /* 쿠폰번호 */
+	Cdiscount number(2), /* 할인율 */
+    CONSTRAINT pk_Coupon_Cno PRIMARY KEY (Cno)
+);
+
+DESC Order_cus;
+
+
+-- 고객주문테이블 테스트용 자료 oerder_cus
+INSERT INTO order_cus (ono, otime, otype, ctel, menuno, ocount, cno, ototalprice, oorderno) 
+VALUES (10,'19/01/01','매장','010-1111-1111',1,1,1,4300,10);
+INSERT INTO order_cus (ono, otime, otype, ctel, menuno, ocount, cno, ototalprice, oorderno) 
+VALUES (11,'19/02/01','테이크아웃','010-1111-1111',1,1,1,4300,11);
+INSERT INTO order_cus (ono, otime, otype, ctel, menuno, ocount, cno, ototalprice, oorderno) 
+VALUES (12,'19/03/01','매장','010-1111-1111',1,1,1,4300,12);
+INSERT INTO order_cus (ono, otime, otype, ctel, menuno, ocount, cno, ototalprice, oorderno) 
+VALUES (13,'19/04/01','테이크아웃','010-1111-1111',1,1,1,4300,13);
+INSERT INTO order_cus (ono, otime, otype, ctel, menuno, ocount, cno, ototalprice, oorderno) 
+VALUES (14,'19/05/01','매장','010-1111-1111',1,1,1,4300,14);
+INSERT INTO order_cus (ono, otime, otype, ctel, menuno, ocount, cno, ototalprice, oorderno) 
+VALUES (15,'19/06/01','테이크아웃','010-1111-1111',1,1,1,4300,15);
+INSERT INTO order_cus (ono, otime, otype, ctel, menuno, ocount, cno, ototalprice, oorderno) 
+VALUES (16,'19/07/01','매장','010-1111-1111',6,1,1,4100,16);
+INSERT INTO order_cus (ono, otime, otype, ctel, menuno, ocount, cno, ototalprice, oorderno) 
+VALUES (17,'19/08/01','테이크아웃','010-1111-1111',6,1,1,4100,17);
+INSERT INTO order_cus (ono, otime, otype, ctel, menuno, ocount, cno, ototalprice, oorderno) 
+VALUES (18,'19/09/01','매장','010-1111-1111',6,1,1,4100,18);
+INSERT INTO order_cus (ono, otime, otype, ctel, menuno, ocount, cno, ototalprice, oorderno) 
+VALUES (19,'19/10/01','매장','010-1111-1111',6,1,1,4100,19);
+INSERT INTO order_cus (ono, otime, otype, ctel, menuno, ocount, cno, ototalprice, oorderno) 
+VALUES (20,'19/11/01','매장','010-1111-1111',6,1,1,4100,20);
+
+INSERT INTO order_cus (ono, otime, otype, ctel, menuno, ocount, cno, ototalprice, oorderno) 
+VALUES(2,'19/02/01','매장','010-2222-2222',3,1,1,4600,2);
+INSERT INTO order_cus (ono, otime, otype, ctel, menuno, ocount, cno, ototalprice, oorderno) 
+VALUES(3,'19/03/01','매장','010-3333-3333',4,1,1,4500,3);
+INSERT INTO order_cus (ono, otime, otype, ctel, menuno, ocount, cno, ototalprice, oorderno) 
+VALUES(4,'19/04/01','매장','010-4444-4444',5,1,1,4500,4);
+INSERT INTO order_cus (ono, otime, otype, ctel, menuno, ocount, cno, ototalprice, oorderno) 
+VALUES(5,'19/05/01','매장','010-5555-5555',6,1,1,4100,5);
+INSERT INTO order_cus (ono, otime, otype, ctel, menuno, ocount, cno, ototalprice, oorderno) 
+VALUES(6,'19/06/01','매장','010-6666-6666',7,1,1,4100,6);
+INSERT INTO order_cus (ono, otime, otype, ctel, menuno, ocount, cno, ototalprice, oorderno) 
+VALUES(7,'19/07/01','매장','010-7777-7777',8,1,1,3500,7);
+INSERT INTO order_cus (ono, otime, otype, ctel, menuno, ocount, cno, ototalprice, oorderno) 
+VALUES(8,'19/08/01','매장','010-8888-8888',9,1,1,3600,8);
+INSERT INTO order_cus (ono, otime, otype, ctel, menuno, ocount, cno, ototalprice, oorderno) 
+VALUES(9,'19/09/01','매장','010-9999-9999',10,1,1,5000,9);
+
+--고객테이블 테스트용
+INSERT INTO Customer (Ctel, Cmile) VALUES ('010-1111-1111',100);
+INSERT INTO Customer (Ctel, Cmile) VALUES ('010-2222-2222',200);
+INSERT INTO Customer (Ctel, Cmile) VALUES ('010-3333-3333',300);
+INSERT INTO Customer (Ctel, Cmile) VALUES ('010-4444-4444',400);
+INSERT INTO Customer (Ctel, Cmile) VALUES ('010-5555-5555',500);
+INSERT INTO Customer (Ctel, Cmile) VALUES ('010-6666-6666',600);
+INSERT INTO Customer (Ctel, Cmile) VALUES ('010-7777-7777',700);
+INSERT INTO Customer (Ctel, Cmile) VALUES ('010-8888-8888',800);
+INSERT INTO Customer (Ctel, Cmile) VALUES ('010-9999-9999',900);
+
+--메뉴테이블 테스트용
+create sequence sq_menu_menuno;
+drop sequence sq_menu_menuno;
+Insert into Menu(menuno,menuname,mprice,mcount) values(sq_menu_menuno.nextval,'플랫화이트',4300,10);
+Insert into Menu(menuno,menuname,mprice,mcount) values(sq_menu_menuno.nextval,'카라멜라테 마키아토',4600,8);
+Insert into Menu(menuno,menuname,mprice,mcount) values(sq_menu_menuno.nextval,'카푸치노',4500,30);
+Insert into Menu(menuno,menuname,mprice,mcount) values(sq_menu_menuno.nextval,'아이스 카푸치노',4500,10);
+Insert into Menu(menuno,menuname,mprice,mcount) values(sq_menu_menuno.nextval,'아메리카노',4100,5);
+Insert into Menu(menuno,menuname,mprice,mcount) values(sq_menu_menuno.nextval,'아이스 아메리카노',4100,12);
+Insert into Menu(menuno,menuname,mprice,mcount) values(sq_menu_menuno.nextval,'초코치노',3500,25);
+Insert into Menu(menuno,menuname,mprice,mcount) values(sq_menu_menuno.nextval,'그린티 라떼',3600,16);
+Insert into Menu(menuno,menuname,mprice,mcount) values(sq_menu_menuno.nextval,'샌드위치',5000,8);
+
+
+
+
+
+
