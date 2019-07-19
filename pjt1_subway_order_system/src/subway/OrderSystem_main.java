@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
-import subway_final.Order_Frame;
+
 
 
 class Order_Frame extends JFrame implements ActionListener{
